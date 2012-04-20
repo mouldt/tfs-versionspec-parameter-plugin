@@ -72,7 +72,7 @@ public class LabelsForProjectCommand extends AbstractCommand implements Parseabl
         List<TFSLabel> list = new ArrayList<TFSLabel>();
         LabelsParser parser = new LabelsParser(new BufferedReader(consoleReader));
         while (parser.nextLabel()) {
-            if (projectPath.equals(parser.getProjectScope())){
+            if (projectPath.equalsIgnoreCase(parser.getProjectScope())){
                 TFSLabel label = new TFSLabel(parser.getLabel(), parser.getProjectScope(), parser.getDate(), parser.getOwner(), parser.getComment());
                 list.add(label);
             }
