@@ -9,7 +9,7 @@
     <select name="type">
         <j:choose>
             <j:when test="${instance.type eq 'PT_LABEL'}">
-                <option value="PT_LABEL" selected="selected">Tag</option>
+                <option value="PT_LABEL" selected="selected">Label</option>
             </j:when>
             <j:otherwise>
     	       <option value="PT_LABEL">Label</option>
@@ -17,7 +17,7 @@
     	</j:choose>
     	<j:choose>
     	   <j:when test="${instance.type eq 'PT_CHANGESET'}">       
-    	       <option value="PT_CHANGESET" selected="selected">Revision</option>
+    	       <option value="PT_CHANGESET" selected="selected">ChangeSet</option>
     	   </j:when>
     	   <j:otherwise>
                <option value="PT_CHANGESET">ChangeSet</option>

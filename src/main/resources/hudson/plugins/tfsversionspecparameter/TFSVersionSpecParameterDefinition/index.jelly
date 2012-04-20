@@ -1,36 +1,25 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
 	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
-	<f:entry title="${it.name}" description="${it.description}">
-	    <div name="parameter" description="${it.description}">
-             <j:if test="${it.errorMessage eq 'noWorkspace'}">
-                <p style="color: red;">${%noWorkspaceError}</p>
-             </j:if>
-             <j:if test="${it.errorMessage eq 'notTFS'}">
-                <p style="color: red;">${%notTFSSCMError}</p>
-             </j:if>
-            <j:choose>
-            	<j:when test="${it.type eq 'PT_LABEL'}">
-            	    <input type="hidden" name="name" value="${it.name}" />
-                    <select name="value" size="5" width="200px">
-            		<j:forEach var="val" items="${it.labelMap}" >
-                            <j:choose>
-                                <option value="${val.key}">${val.value}</option>
-                            </j:choose>
-                        </j:forEach>  
-                    </select>
-            	</j:when>
-            	<j:when test="${it.type eq 'PT_CHANGESET'}">
-            	    <input type="hidden" name="name" value="${it.name}" />
-                    <select name="value" size="5" width="200px">
-            		<j:forEach var="val" items="${it.changesetMap}" >
-                            <j:choose>
-                                <option value="${val.key}">${val.value}</option>
-                            </j:choose>
-                        </j:forEach>  
-                    </select>
-            	</j:when>
-            </j:choose>	
-        </div>
-	</f:entry>
+             <j:choose>
+             <j:when test="${it.populateCollection eq ''}">
+             <f:entry title="${it.name}" description="${it.description}">
+	     <div name="parameter" description="${it.description}">
+                <input type="hidden" name="name" value="${it.name}" />
+                <select name="value" size="5" width="200px">
+                    <j:forEach var="val" items="${it.dataMap}" >
+                        <option value="${val.key}">${val.value}</option>
+                    </j:forEach>  
+                </select>
+                </div>
+                </f:entry>
+             </j:when>
+             <j:otherwise>
+             <f:entry title="${it.name}">
+                <div class="error">
+                    <p style="color: red;">${it.errorMessage}</p>
+                </div>
+                </f:entry>
+             </j:otherwise>
+             </j:choose>
 </j:jelly>
