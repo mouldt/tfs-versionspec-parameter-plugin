@@ -57,6 +57,7 @@ public class LabelsForProjectCommand extends AbstractCommand implements Parseabl
         arguments.add("labels");
         arguments.add("-noprompt");
         arguments.add("-format:detailed");
+        arguments.add("-owner:*");
         addServerArgument(arguments);
         addLoginArgument(arguments);
         return arguments;
